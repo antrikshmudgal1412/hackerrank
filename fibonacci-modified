@@ -1,0 +1,44 @@
+import java.math.BigInteger;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.io.*;
+
+
+public class FibonacciModified {
+	
+	
+	private static BigInteger modifiedFibonacci(int num, Map<Integer, BigInteger> fibonacciTable) {
+		
+		if(fibonacciTable.containsKey(num)) {
+			return fibonacciTable.get(num);
+		}
+		
+		
+		final BigInteger lastNumFibonacci = modifiedFibonacci(num - 1, fibonacciTable);
+		final BigInteger numFibonacci = lastNumFibonacci.multiply(lastNumFibonacci).add(modifiedFibonacci(num - 2, fibonacciTable));
+		
+	
+		fibonacciTable.put(num, numFibonacci);
+		
+		return numFibonacci;
+	}
+	
+	public static void main(String[] args) {
+		final Scanner in = new Scanner(System.in);
+		
+		final BigInteger A = BigInteger.valueOf(in.nextLong());
+		final BigInteger B = BigInteger.valueOf(in.nextLong());
+		
+	
+		final Map<Integer, BigInteger> fibonacciTable = new HashMap<>();
+		fibonacciTable.put(1, A);
+		fibonacciTable.put(2, B);
+		
+		final int N = in.nextInt();
+		
+		System.out.println(modifiedFibonacci(N, fibonacciTable));
+		
+		in.close();
+	}
+}
