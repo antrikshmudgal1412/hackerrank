@@ -1,0 +1,38 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class solution
+{
+public static void main(String[] args)
+{
+Scanner in = new Scanner(System.in);
+
+int n,val[500],sz;
+
+n=in.nextInt();
+val[0]=1;
+sz=1;
+
+for(int i = 2; i <= n; i++)
+{
+int caryy=0;
+
+for(int j=0;j<sz;j++)
+{
+int pod1=val[j]*i+caryy;
+val[j]=pod1%10;
+caryy=pod1/10;
+}
+while(caryy)
+{
+val[sz] = caryy%10;
+caryy/=10;
+sz++;
+}
+
+}
+}
+}
